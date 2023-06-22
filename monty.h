@@ -1,4 +1,4 @@
-#ifndef _M0NTY_H_
+S#ifndef _M0NTY_H_
 #define _MONTY_H_
 
 
@@ -34,24 +34,24 @@ typedef struct stack_s
 typedef struct instruction_s
 {
         char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+        void (*f)(stack_t **stack, unsigned int line_num);
 } instruction_t;
 
 ###
-void m_push(stack_t **stack, unsigned int line_number);
-void m_pall(stack_t **stack, unsigned int line_number);
-void m_pop(stack_t **stack, unsigned int line_number);
-void m_add(stack_t **stack, unsigned int line_number);
-void m_nop(stack_t **stack, unsigned int line_number);
-void m_sub(stack_t **stack, unsigned int line_number);
-void m_pint(stack_t **stack, unsigned int line_number);
-void m_swap(stack_t **stack, unsigned int line_number);
-void m_pchar(stack_t **stack, unsigned int line_number);
-void m_mul(stack_t **stack, unsigned int line_number);
-void m_div_m(stack_t **stack, unsigned int line_number);
-void m_mod_m(stack_t **stack, unsigned int line_number);
-void m_pstr_t(stack_t **stack, unsigned int line_number);
-void m_rotrl(stack_t **stack, unsigned int line_number);
+void m_push(stack_t **stack, unsigned int line_num);
+void m_pall(stack_t **stack, unsigned int line_num);
+void m_pop(stack_t **stack, unsigned int line_num);
+void m_add(stack_t **stack, unsigned int line_num);
+void m_nop(stack_t **stack, unsigned int line_num);
+void m_sub(stack_t **stack, unsigned int line_num);
+void m_pint(stack_t **stack, unsigned int line_num);
+void m_swap(stack_t **stack, unsigned int line_num);
+void m_pchar(stack_t **stack, unsigned int line_num);
+void m_mul(stack_t **stack, unsigned int line_num);
+void m_div_m(stack_t **stack, unsigned int line_num);
+void m_mod_m(stack_t **stack, unsigned int line_num);
+void m_pstr_t(stack_t **stack, unsigned int line_num);
+void m_rotrl(stack_t **stack, unsigned int line_num);
 
 
 
