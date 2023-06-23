@@ -1,4 +1,3 @@
-
 #include <stdlib.h>
 
 char *get_int(int num);
@@ -8,10 +7,10 @@ void fill_numbase_buff(unsigned int num, unsigned int base,
 		       char *buff, int buff_size);
 
 /**
- * get_int - gets a character pointer to new string containing int
- * @num: number to convert to string
+ * get_int - get the character pnt to new str containing int
+ * @num: integer num
  *
- * Return: character pointer to newly created string. NULL if malloc fails.
+ * Return: char pointer to newly created string. NULL away.
  */
 char *get_int(int num)
 {
@@ -37,7 +36,7 @@ char *get_int(int num)
 }
 
 /**
- * _abs - gets the absolute value of an integer
+ * _abs - gets the absolute 
  * @i: integer to get absolute value of
  *
  * Return: unsigned integer abs rep of i
@@ -70,12 +69,12 @@ int get_numbase_len(unsigned int num, unsigned int base)
 
 /**
  * fill_numbase_buff - fills buffer with correct numbers up to base 36
- * @num: number to convert to string given base
+ * @num: number integer unsigned
  * @base: base of number used in conversion, only works up to base 36
  * @buff: buffer to fill with result of conversion
  * @buff_size: size of buffer in bytes
  *
- * Return: always void.
+ * Return:  void.
  */
 void fill_numbase_buff(unsigned int num, unsigned int base,
 			char *buff, int buff_size)

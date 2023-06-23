@@ -2,16 +2,16 @@
 #include <string.h>
 #include <stdio.h>
 
-void free_tokens(void);
-unsigned int token_arr_len(void);
+void fr_token(void);
+unsigned int token_array_lengh(void);
 int is_empty_line(char *line, char *delims);
 void (*get_op_func(char *opcode))(stack_t**, unsigned int);
-int run_monty(FILE *script_fd);
+int runn_monty(FILE *script_fd);
 
 /**
- * free_tokens - Frees the global op_toks array of strings.
+ * fr_token - Frees the global op_toks array of strings.
  */
-void free_tokens(void)
+void fr_token(void)
 {
 	size_t i = 0;
 
@@ -25,11 +25,11 @@ void free_tokens(void)
 }
 
 /**
- * token_arr_len - Gets the length of current op_toks.
+ * token_array_lengh - Gets the length of current op_toks.
  *
  * Return: Length of current op_toks (as int).
  */
-unsigned int token_arr_len(void)
+unsigned int token_array_lengh(void)
 {
 	unsigned int toks_len = 0;
 
@@ -73,23 +73,23 @@ int is_empty_line(char *line, char *delims)
 void (*get_op_func(char *opcode))(stack_t**, unsigned int)
 {
 	instruction_t op_funcs[] = {
-		{"push", monty_push},
-		{"pall", monty_pall},
-		{"pint", monty_pint},
-		{"pop", monty_pop},
-		{"swap", monty_swap},
-		{"add", monty_add},
-		{"nop", monty_nop},
-		{"sub", monty_sub},
-		{"div", monty_div},
-		{"mul", monty_mul},
-		{"mod", monty_mod},
-		{"pchar", monty_pchar},
-		{"pstr", monty_pstr},
-		{"rotl", monty_rotl},
-		{"rotr", monty_rotr},
-		{"stack", monty_stack},
-		{"queue", monty_queue},
+		{"push", m_push},
+		{"pall", m_push},
+		{"pint", m_pint},
+		{"pop", m_pop},
+		{"swap", m_swap},
+		{"add", m_add},
+		{"nop", m_nop},
+		{"sub", m_sub},
+		{"div", m_div},
+		{"mul", m_mul},
+		{"mod", m_mod},
+		{"pchar", m_pchar},
+		{"pstr", m_pstr},
+		{"rotl", m_rotl},
+		{"rotr", m_rotr},
+		{"stack", m_stack},
+		{"queue", m_queue},
 		{NULL, NULL}
 	};
 	int i;
@@ -104,65 +104,65 @@ void (*get_op_func(char *opcode))(stack_t**, unsigned int)
 }
 
 /**
- * run_monty - Primary function to execute a Monty bytecodes script.
+ * runn_monty - Primary function to execute a Monty bytecodes script.
  * @script_fd: File descriptor for an open Monty bytecodes script.
  *
  * Return: EXIT_SUCCESS on success, respective error code on failure.
  */
-int run_monty(FILE *script_fd)
+int runn_monty(FILE *script_fd)
 {
 	stack_t *stack = NULL;
 	char *line = NULL;
 	size_t len = 0, exit_status = EXIT_SUCCESS;
-	unsigned int line_number = 0, prev_tok_len = 0;
+	unsigned int line_n = 0, prev_tok_len = 0;
 	void (*op_func)(stack_t**, unsigned int);
 
-	if (init_stack(&stack) == EXIT_FAILURE)
+	if (m_init_stack(&stack) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 
 	while (getline(&line, &len, script_fd) != -1)
 	{
-		line_number++;
+		line_n++;
 		op_toks = strtow(line, DELIMS);
 		if (op_toks == NULL)
 		{
 			if (is_empty_line(line, DELIMS))
 				continue;
-			free_stack(&stack);
-			return (malloc_error());
+			m_free_stack(&stack);
+			return (m_mal_err());
 		}
 		else if (op_toks[0][0] == '#') /* comment line */
 		{
-			free_tokens();
+			fr_token();
 			continue;
 		}
 		op_func = get_op_func(op_toks[0]);
 		if (op_func == NULL)
 		{
-			free_stack(&stack);
-			exit_status = unknown_op_error(op_toks[0], line_number);
-			free_tokens();
+			m_free_stack(&stack);
+			exit_status = unk_op_err(op_toks[0], line_n);
+			fr_token();
 			break;
 		}
-		prev_tok_len = token_arr_len();
-		op_func(&stack, line_number);
-		if (token_arr_len() != prev_tok_len)
+		prev_tok_len = token_array_lengh();
+		op_func(&stack, line_n);
+		if (token_array_lengh() != prev_tok_len)
 		{
 			if (op_toks && op_toks[prev_tok_len])
 				exit_status = atoi(op_toks[prev_tok_len]);
 			else
 				exit_status = EXIT_FAILURE;
-			free_tokens();
+			fr_token();
 			break;
 		}
-		free_tokens();
+		fr_token();
 	}
-	free_stack(&stack);
+	m_free_stack(&stack);
 
 	if (line && *line == 0)
 	{
 		free(line);
-		return (malloc_error());
+		return (m_mal_err());
 	}
 
 	free(line);
