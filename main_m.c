@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <stdio.h>
 
 globales_t globalvar = {NULL, NULL, NULL};
 
@@ -18,10 +19,10 @@ int main(int argc, char **argv)
 	stack_t *stack = NULL;
 
 	if (argc != 2)
-		stderr_usage();
+		m_stderr_usage();
 	globalvar.fd = fopen(argv[1], "r");
 	if (globalvar.fd == NULL)
-		stderr_fopen(argv[1]);
+		m_stderr_fopen(argv[1]);
 	line_size = getline(&globalvar.line_buf, &line_buf_size, globalvar.fd);
 	if (globalvar.line_buf[0] == '#')
 		line_size = getline(&globalvar.line_buf, &line_buf_size, globalvar.fd);
@@ -33,7 +34,7 @@ int main(int argc, char **argv)
 		globalvar.token2 = strtok(NULL, DELIM);
 		if (token == NULL)
 		{flag2 = 1;
-			nop(&stack, line_num); }
+			m_nop(&stack, line_num); }
 		if (flag2 == 0)
 		{
 			if (token[0] == '#')
@@ -42,10 +43,10 @@ int main(int argc, char **argv)
 						    &line_buf_size, globalvar.fd);
 				flag = 1; }}
 		if (flag == 0)
-		{get_builtin(token, &stack, line_num);
+		{m_get_builtin(token, &stack, line_num);
 			line_size = getline(&globalvar.line_buf, &line_buf_size,
 					    globalvar.fd); }}
-	free_dlistint(stack);
+	m_free_dlistint(stack);
 	free(globalvar.line_buf);
 	globalvar.line_buf = NULL;
 	fclose(globalvar.fd);

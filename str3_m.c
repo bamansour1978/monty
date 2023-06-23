@@ -12,8 +12,8 @@ char *m_get_int(int num)
 	int len = 0;
 	char *ret;
 
-	tmp = abs_m(num);
-	len = len_buff_uint(tmp, 10);
+	tmp = m_abs_m(num);
+	len = m_len_buff_uint(tmp, 10);
 
 	if (num < 0 || num_v < 0)
 		len++;
@@ -21,7 +21,7 @@ char *m_get_int(int num)
 	if (!ret)
 		return (NULL);
 
-	full_buff(tmp, 10, ret, len);
+	m_full_buff(tmp, 10, ret, len);
 	if (num < 0 || num_v < 0)
 		ret[0] = '-';
 

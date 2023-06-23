@@ -14,7 +14,7 @@ void m_div_m(stack_t **stack, unsigned int line_num)
 
 	if (*stack == NULL || stack == NULL)
 	{
-		op_e(line_num, "div");
+		m_op_e(line_num, "div");
 	}
 
 	temp = *stack;
@@ -31,11 +31,11 @@ void m_div_m(stack_t **stack, unsigned int line_num)
 		j++;
 	}
 	if (i == 0 && flag == 0)
-		free_dlistint(*stack), op_e(line_num, "div");
+		m_free_dlistint(*stack), m_op_e(line_num, "div");
 	else
 	{
 		if (temp->n == 0)
-			div_e(line_num);
+			m_div_e(line_num);
 		temp2->n = temp2->n / temp->n;
 		temp2->next = NULL;
 		free(temp);
@@ -60,7 +60,7 @@ void m_mod_m(stack_t **stack, unsigned int line_num)
 
 	if (*stack == NULL || stack == NULL)
 	{
-		op_e(line_num, "mod");
+		m_op_e(line_num, "mod");
 	}
 
 	temp = *stack;
@@ -77,11 +77,11 @@ void m_mod_m(stack_t **stack, unsigned int line_num)
 		j++;
 	}
 	if (i == 0 && flag == 0)
-		free_dlistint(*stack), op_e(line_num, "mod");
+		m_free_dlistint(*stack), m_op_e(line_num, "mod");
 	else
 	{
 		if (temp->n == 0)
-			div_e(line_num);
+			m_div_e(line_num);
 		temp2->n = temp2->n % temp->n;
 		temp2->next = NULL;
 		free(temp);
@@ -103,15 +103,15 @@ void pstr_t(stack_t **stack, unsigned int line_num)
 	if (*stack == NULL || stack == NULL)
 	{
 		printf("\n");
-		free_globalvars();
+		m_free_globalvars();
 		exit(0);
 	}
 	temp = *stack;
 	if (temp->next == NULL && line_num == 2 && (temp->n < 0 || temp->n >= 127))
 	{
 		printf("\n");
-		free_dlistint(*stack);
-		free_globalvars();
+		m_free_dlistint(*stack);
+		m_free_globalvars();
 		exit(0);
 	}
 	while (temp->next != NULL)

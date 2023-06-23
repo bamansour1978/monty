@@ -22,11 +22,11 @@ void m_tokerr(int error_status)
 	char *exit_str = NULL;
 	char *new_token = NULL;
 
-	token_len = array_len();
+	token_len = m_array_len();
 	new_token = malloc(sizeof(char *) * (token_len + 2));
 	if (!globalvar.token2)
 	{
-		stderr_malloc();
+		m_stderr_malloc();
 		return;
 	}
 	while (i < token_len)
@@ -34,11 +34,11 @@ void m_tokerr(int error_status)
 		new_token[i] = globalvar.token2[i];
 		i++;
 	}
-	exit_str = get_int(error_status);
+	exit_str = m_get_int(error_status);
 	if (!exit_str)
 	{
 		free(globalvar.token2);
-		stderr_malloc();
+		m_stderr_malloc();
 		return;
 	}
 	free(globalvar.token2);

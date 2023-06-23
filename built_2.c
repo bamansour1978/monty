@@ -16,12 +16,12 @@ void m_pop(stack_t **stack, unsigned int line_num)
 
 	if (stack == NULL)
 	{
-		free_dlistint(*stack);
-		pop_e(line_num); }
+		m_free_dlistint(*stack);
+		m_pop_e(line_num); }
 	if (*stack == NULL)
 	{
-		free_dlistint(*stack);
-		pop_e(line_num); }
+		m_free_dlistint(*stack);
+		m_pop_e(line_num); }
 	temp = *stack;
 	while (temp->next != NULL)
 	{
@@ -63,7 +63,7 @@ void m_add(stack_t **stack, unsigned int line_num)
 
 	if (*stack == NULL || stack == NULL)
 	{
-		op_e(line_num, "add");
+		m_op_e(line_num, "add");
 	}
 	temp = *stack;
 	while (temp->next != NULL)
@@ -79,7 +79,7 @@ void m_add(stack_t **stack, unsigned int line_num)
 		j++;
 	}
 	if (i == 0 && flag == 0)
-		free_dlistint(*stack), op_e(line_num, "add");
+		m_free_dlistint(*stack), m_op_e(line_num, "add");
 	else
 	{
 		temp2->n = temp2->n + temp->n;
@@ -105,7 +105,7 @@ void m_sub(stack_t **stack, unsigned int line_num)
 
 	if (*stack == NULL || stack == NULL)
 	{
-		op_e(line_num, "sub");
+		m_op_e(line_num, "sub");
 	}
 	temp = *stack;
 	while (temp->next != NULL)
@@ -121,7 +121,7 @@ void m_sub(stack_t **stack, unsigned int line_num)
 		j++;
 	}
 	if (i == 0 && flag == 0)
-		free_dlistint(*stack), op_e(line_num, "sub");
+		m_free_dlistint(*stack), m_op_e(line_num, "sub");
 	else
 	{
 		temp2->n = temp2->n - temp->n;
@@ -145,7 +145,7 @@ void m_mul(stack_t **stack, unsigned int line_num)
 
 	if (*stack == NULL || stack == NULL)
 	{
-		op_e(line_numb, "mul");
+		m_op_e(line_num, "mul");
 		return;
 	}
 
@@ -163,7 +163,7 @@ void m_mul(stack_t **stack, unsigned int line_num)
 		j++;
 	}
 	if (i == 0 && flag == 0)
-		free_dlistint(*stack), op_e(line_num, "mul");
+		m_free_dlistint(*stack), m_op_e(line_num, "mul");
 	else
 	{
 		temp2->n = temp2->n * temp->n;
@@ -186,7 +186,7 @@ void m_pchar(stack_t **stack, unsigned int line_num)
 
 	if (*stack == NULL || stack == NULL)
 	{
-		pchar_e(line_num, "stack empty");
+		m_pchar_e(line_num, "stack empty");
 		return;
 	}
 	temp = (*stack);
@@ -196,7 +196,7 @@ void m_pchar(stack_t **stack, unsigned int line_num)
 	}
 	if (temp->n < 0 || temp->n > 127)
 	{
-		pchar_e(line_num, "value out of range");
+		m_pchar_e(line_num, "value out of range");
 	}
 	printf("%c\n", temp->n);
 }

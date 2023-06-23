@@ -14,22 +14,22 @@ void m_push(stack_t **stack, unsigned int line_num)
 
 	if (globalvar.token2 == NULL)
 	{
-		free_dlistint(*stack);
-		stderr_int(line_num);
+		m_free_dlistint(*stack);
+		m_stderr_int(line_num);
 	}
-	if (!_isdigit() || stack == NULL)
+	if (!m_isdigit() || stack == NULL)
 	{
-		free_dlistint(*stack);
-		stderr_int(line_num);
+		m_free_dlistint(*stack);
+		m_stderr_int(line_num);
 	}
 	n = atoi(globalvar.token2);
 	if (*stack  == NULL)
 	{
-		create_node_stackfirst(stack, n);
+		m_create_node_stackfirst(stack, n);
 	}
 	else
 	{
-		create_node_stackend(stack, n);
+		m_create_node_stackend(stack, n);
 	}
 }
 
@@ -52,8 +52,8 @@ void m_pall(stack_t **stack, unsigned int line_num)
 	}
 	if (*stack == NULL && line_num != 1)
 	{
-		free_dlistint(*stack);
-		free_globalvars();
+		m_free_dlistint(*stack);
+		m_free_globalvars();
 		exit(EXIT_SUCCESS);
 	}
 	temp = *stack;
@@ -82,7 +82,7 @@ void m_pint(stack_t **stack, unsigned int line_num)
 
 	if (stack == NULL || *stack == NULL)
 	{
-		pint_e(line_num);
+		m_pint_e(line_num);
 		return;
 	}
 	temp = *stack;
@@ -106,11 +106,11 @@ void m_swap(stack_t **stack, unsigned int line_num)
 	int i, j;
 
 	if (*stack == NULL || stack == NULL)
-		op_e(line_num, "swap");
+		m_op_e(line_num, "swap");
 
 	temp = (*stack)->next;
 	if ((*stack)->next == NULL)
-		op_e(line_num, "swap");
+		m_op_e(line_num, "swap");
 	while (temp->next != NULL)
 	{
 		temp = temp->next;

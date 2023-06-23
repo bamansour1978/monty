@@ -8,7 +8,7 @@
 void m_pop_e(unsigned int line_num)
 {
 	fprintf(stderr, "L%u: can't pop an empty stack\n", line_num);
-	free_globalvars();
+	m_free_globalvars();
 	exit(EXIT_FAILURE);
 }
 
@@ -20,7 +20,7 @@ void m_pop_e(unsigned int line_num)
 void pint_e(unsigned int line_num)
 {
 	fprintf(stderr, "L%u: can't pint, stack empty\n", line_num);
-	free_globalvars();
+	m_free_globalvars();
 	exit(EXIT_FAILURE);
 }
 
@@ -33,7 +33,7 @@ void pint_e(unsigned int line_num)
 void m_op_e(unsigned int line_num, char *op)
 {
 	fprintf(stderr, "L%u: can't %s, stack too short\n", line_num, op);
-	free_globalvars();
+	m_free_globalvars();
 	exit(EXIT_FAILURE);
 }
 /**
@@ -45,7 +45,7 @@ void m_op_e(unsigned int line_num, char *op)
 void m_pchar_e(unsigned int line_num, char *msg)
 {
 	fprintf(stderr, "L%u: can't pchar, %s\n", line_num, msg);
-	free_globalvars();
+	m_free_globalvars();
 	exit(EXIT_FAILURE);
 }
 
@@ -57,6 +57,6 @@ void m_pchar_e(unsigned int line_num, char *msg)
 void m_div_e(unsigned int line_num)
 {
 	fprintf(stderr, "L%u: division by zero\n", line_num);
-	free_globalvars();
+	m_free_globalvars();
 	exit(EXIT_FAILURE);
 }
