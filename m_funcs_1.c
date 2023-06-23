@@ -87,7 +87,7 @@ void m_pint(stack_t **stack, unsigned int line_n)
 {
 	if ((*stack)->next == NULL)
 	{
-		set_op_token_errors(pint_error(line_n));
+		set_op_token_errors(pint_m_err(line_n));
 		return;
 	}
 
@@ -128,7 +128,7 @@ void m_swap(stack_t **stack, unsigned int line_n)
 
 	if ((*stack)->next == NULL || (*stack)->next->next == NULL)
 	{
-		set_op_token_errors(short_stack_error(line_n, "swap"));
+		set_op_token_errors(err_stack_short(line_n, "swap"));
 		return;
 	}
 

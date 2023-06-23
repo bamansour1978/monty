@@ -24,7 +24,7 @@ void m_add(stack_t **stack, unsigned int line_n)
 {
 	if ((*stack)->next == NULL || (*stack)->next->next == NULL)
 	{
-		set_op_token_errors(short_stack_error(line_n, "add"));
+		set_op_token_errors(err_stack_short(line_n, "add"));
 		return;
 	}
 
@@ -45,7 +45,7 @@ void m_sub(stack_t **stack, unsigned int line_n)
 {
 	if ((*stack)->next == NULL || (*stack)->next->next == NULL)
 	{
-		set_op_token_errors(short_stack_error(line_n, "sub"));
+		set_op_token_errors(err_stack_short(line_n, "sub"));
 		return;
 	}
 
@@ -66,13 +66,13 @@ void m_div(stack_t **stack, unsigned int line_n)
 {
 	if ((*stack)->next == NULL || (*stack)->next->next == NULL)
 	{
-		set_op_token_errors(short_stack_error(line_n, "div"));
+		set_op_token_errors(err_stack_short(line_n, "div"));
 		return;
 	}
 
 	if ((*stack)->next->n == 0)
 	{
-		set_op_token_errors(div_error(line_n));
+		set_op_token_errors(err_m_div(line_n));
 		return;
 	}
 
@@ -93,7 +93,7 @@ void m_mul(stack_t **stack, unsigned int line_n)
 {
 	if ((*stack)->next == NULL || (*stack)->next->next == NULL)
 	{
-		set_op_token_errors(short_stack_error(line_n, "mul"));
+		set_op_token_errors(err_stack_short(line_n, "mul"));
 		return;
 	}
 
@@ -114,13 +114,13 @@ void m_mod(stack_t **stack, unsigned int line_n)
 {
 	if ((*stack)->next == NULL || (*stack)->next->next == NULL)
 	{
-		set_op_token_errors(short_stack_error(line_n, "mod"));
+		set_op_token_errors(err_stack_short(line_n, "mod"));
 		return;
 	}
 
 	if ((*stack)->next->n == 0)
 	{
-		set_op_token_errors(div_error(line_n));
+		set_op_token_errors(err_m_div(line_n));
 		return;
 	}
 

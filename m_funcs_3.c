@@ -25,12 +25,12 @@ void m_pchar(stack_t **stack, unsigned int line_n)
 {
 	if ((*stack)->next == NULL)
 	{
-		set_op_token_errors(pchar_error(line_n, "stack empty"));
+		set_op_token_errors(err_pchar(line_n, "stack empty"));
 		return;
 	}
 	if ((*stack)->next->n < 0 || (*stack)->next->n > 127)
 	{
-		set_op_token_errors(pchar_error(line_n,
+		set_op_token_errors(err_pchar(line_n,
 					     "value out of range"));
 		return;
 	}

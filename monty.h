@@ -81,9 +81,9 @@ int file_open_err(char *filename);
 int unk_op_err(char *opcode, unsigned int line_n);
 int int_no_err(unsigned int line_n);
 int m_po_err(unsigned int line_n);
-int pint_error(unsigned int line_n);
-int short_stack_error(unsigned int line_n, char *op);
-int div_error(unsigned int line_n);
-int pchar_error(unsigned int line_n, char *message);
+int pint_m_err(unsigned int line_n);
+int err_stack_short(unsigned int line_n, char *op);
+int err_m_div(unsigned int line_n);
+int err_pchar(unsigned int line_n, char *message);
 
 #endif /* __MONTY_H__ */
