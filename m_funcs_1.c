@@ -1,7 +1,6 @@
 #include "monty.h"
 
 void m_push(stack_t **stack, unsigned int line_n);
-void m_push(stack_t **stack, unsigned int line_n);
 void m_pint(stack_t **stack, unsigned int line_n);
 void m_pop(stack_t **stack, unsigned int line_n);
 void m_swap(stack_t **stack, unsigned int line_n);
